@@ -1,28 +1,21 @@
-FrankenWM
+frincklewm
 =========
 
-*"monsterwm's bastard child"* or *"not the wm your desktop needs, but the one
-it deserves"*
-
-FrankenWM is a dynamic tiling WM (comparable to dwm or Awesome), featuring the
+frincklewm is a dynamic tiling WM (comparable to dwm or Awesome), featuring the
 v-stack, b-stack, grid, fibonacci, dualstack, equal and monocle layouts out of
 the box. If you want to, you can add gaps between the windows as well.
 
-It was once based on monsterwm but has undergone many greater changes including
+It was once based on FrankenWM before that on monsterwm but has undergone many greater changes including
 adding pieces from other WMs (hence the name) and porting all sorts of stuff
 from Xlib to XCB. Many of the original monsterwm patches have been ported as
 well.
 
 All settings must be set at compile time by editing `config.h` and it does not
 feature a status bar (but supports leaving preconfigured space for one). I
-prepared a few scripts for different bars [here][sb].
-
-  [sb]: https://gist.github.com/sulami/d6a53179d6d7479e0709
+prepared one called doomy - https://github.com/su8/doomy
 
 Installation
 ------------
-
-Note: If you are on Arch Linux, you can use the [AUR][aur].
 
 You need xcb and xcb-utils then, copy `config.def.h` as `config.h` and edit to
 suit your needs.  Build and install.
@@ -32,10 +25,8 @@ suit your needs.  Build and install.
     $ make
     # make clean install
 
-The packages in Arch Linux needed for example would be
-`libxcb` `xcb-util` `xcb-util-wm` `xcb-util-keysyms`
-
-  [aur]: https://aur.archlinux.org/packages/frankenwm-git/
+The packages needed for example would be
+`libxcb` `xcb-util` `xcb-util-wm` `xcb-util-keysyms` `make/gmake` `gcc` `xorg # the whole package of programs`
 
 Configuration
 -------------
@@ -57,14 +48,14 @@ Bugs
 You can report bugs and request features here: [FrankenWM GitHub issues][gh] or
 [ArchLinux Forums][af]
 
-   [gh]: https://github.com/sulami/FrankenWM/issues
-   [af]: https://bbs.archlinux.org/viewtopic.php?pid=1470320
+   [gh]: https://github.com/su8/frincklewm/issues
 
 Thanks
 ------
 
 Parts of FrankenWM come from:
 
+ * FrankenWM
  * [c00kiemonster's][cookiemonster] [monsterwm][monsterwm]
  * [cloudef's][cloudef] [monsterwm-xcb][monsterwm-xcb]
  * [venam's][venam] [2bwm][twobwm]
@@ -87,4 +78,3 @@ Inspiration from:
   [dwm]:  http://dwm.suckless.org/
   [baskerville]: https://github.com/baskerville
   [bspwm]: https://github.com/baskerville/bspwm
-
