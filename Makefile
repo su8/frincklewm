@@ -14,66 +14,37 @@
 #   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #   MA 02110-1301, USA.
 
-WMNAME  = frincklewm
-
 PREFIX ?= /usr/local
 BINDIR ?= ${PREFIX}/bin
 MANPREFIX ?= ${PREFIX}/share/man
 
+PACKAGE=frincklewm
+PROG=frincklewm.c
+
 INCS = -I. -I. `pkg-config --cflags xcb xcb-aux xcb-icccm xcb-keysyms xcb-ewmh`
 LIBS = -lc -lX11 `pkg-config --libs xcb xcb-aux xcb-icccm xcb-keysyms xcb-ewmh`
 
-CFLAGS   += -std=c99 -pedantic -Wall -Wextra ${INCS} ${CPPFLAGS}
+CFLAGS += -g2 -Wall -Wextra -O2 -I/usr/include/freetype2 -I/usr/X11R6/include -L/usr/X11R6/lib -I/usr/include/X11 -lX11 -lXft -std=c99 -pipe -pedantic -Wundef -Wshadow -W -Wwrite-strings -Wcast-align -Wstrict-overflow=5 -Wconversion -Wpointer-arith -Wstrict-prototypes -Wformat=2 -Wsign-compare -Wendif-labels -Wredundant-decls -Winit-self
 LDFLAGS  += ${LIBS}
 
-EXEC = ${WMNAME}
-
-SRC = ${WMNAME}.c
-OBJ = ${SRC:.c=.o}
-
-ifeq (${DEBUG},0)
-   CFLAGS  += -Os
-else
-   CFLAGS  += -g
-   LDFLAGS += -g
-endif
-
-all: options ${WMNAME}
-
-options:
-	@echo ${WMNAME} build options:
-	@echo "CFLAGS   = ${CFLAGS}"
-	@echo "LDFLAGS  = ${LDFLAGS}"
-	@echo "CC       = ${CC}"
-
-.c.o:
-	@echo CC $<
-	@${CC} -c ${CFLAGS} $<
-
-${OBJ}: config.h
-
-config.h:
-	@echo creating $@ from config.def.h
-	@cp config.def.h $@
-
-${WMNAME}: ${OBJ}
-	@echo CC -o $@
-	@${CC} -o $@ ${OBJ} ${LDFLAGS}
+all:
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(PACKAGE) $(PROG)
+	@echo creating config.h from config.def.h
+	@cp config.def.h config.h
 
 clean:
 	@echo cleaning
 	@rm -fv ${WMNAME} ${OBJ} ${WMNAME}-${VERSION}.tar.gz
+	@rm -f $(PACKAGE)
 
-install: all
-	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
-	@install -Dm755 ${WMNAME} ${DESTDIR}${PREFIX}/bin/${WMNAME}
+install:
+	@install -D -s -m 755 $(PACKAGE) /usr/bin/$(PACKAGE)
 	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man.1
 	@install -Dm644 ${WMNAME}.1 ${DESTDIR}${MANPREFIX}/man1/${WMNAME}.1
 
 uninstall:
-	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
-	@rm -f ${DESTDIR}${PREFIX}/bin/${WMNAME}
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/${WMNAME}.1
+	@rm -f /usr/bin/$(PACKAGE)
 
-.PHONY: all options clean install uninstall
+.PHONY: all clean install uninstall
