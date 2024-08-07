@@ -20,9 +20,7 @@ Installation
 You need xcb and xcb-utils then, copy `config.def.h` as `config.h` and edit to
 suit your needs.  Build and install.
 
-    $ cp config.def.h config.h
-    $ $EDITOR config.h
-    $ make
+    $ make -j8 # where 8 are CPU cores/threads
     # make clean install
 
 The packages needed for example would be
@@ -36,17 +34,16 @@ Configuration is done by editing `config.h` before compiling FrankenWM.
 Usage
 -----
 
-I took the time to write a really nice and pretty manpage (man frankenwm, or
-man ./[frankenwm.1][man] if you want to read it before installing) covering the
+I took the time to write a really nice and pretty manpage (man frincklenwm, or
+man ./[frincklenwm.1][man] if you want to read it before installing) covering the
 tiling modes and all of the default shortcuts.
 
-  [man]: https://github.com/sulami/frankenwm/blob/master/frankenwm.1
+  [man]: https://github.com/su8/frincklenwm/blob/master/frincklenwm.1
 
 Bugs
 ----
 
-You can report bugs and request features here: [FrankenWM GitHub issues][gh] or
-[ArchLinux Forums][af]
+You can report bugs and request features here: [frinckle GitHub issues][gh]
 
    [gh]: https://github.com/su8/frincklewm/issues
 
