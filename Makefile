@@ -29,8 +29,6 @@ LDFLAGS  += ${LIBS}
 
 all:
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $(PACKAGE) $(PROG)
-	@echo creating config.h from config.def.h
-	@cp config.def.h config.h
 
 clean:
 	@echo cleaning
