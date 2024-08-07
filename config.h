@@ -94,6 +94,8 @@ static const AppRule rules[] = { \
 static const char *termcmd[] = { "xterm",     NULL };
 static const char *menucmd[] = { "dmenu_run", NULL };
 static const char *scrpcmd[] = { "xterm", "-T", "scratchpad", NULL };
+static const char *browserCmd[] = { "firefox",     NULL };
+static const char *thunarCmd[] = { "thunar",     NULL };
 /* static const char *scrpcmd[] = { "urxvt", "-name", "scratchpad",  NULL }; */
 
 #define DESKTOPCHANGE(K,N) \
@@ -147,10 +149,10 @@ static key keys[] = {
     {  MOD4|MOD1|CONTROL,XK_h,          resize_x,          {.i = -10}},
     {  MOD4|MOD1|CONTROL,XK_l,          resize_x,          {.i = +10}},
     /* reset the selected floating window to tiling */
-    {  MOD4,             XK_t,          tilemize,          {NULL}},
+    {  MOD1,             XK_m,          tilemize,          {NULL}},
 
     /* mode selection */
-    {  MOD4|SHIFT,       XK_t,          switch_mode,       {.i = TILE}},
+    {  MOD4|SHIFT,       XK_p,          switch_mode,       {.i = TILE}},
     {  MOD4|SHIFT,       XK_m,          switch_mode,       {.i = MONOCLE}},
     {  MOD4|SHIFT,       XK_b,          switch_mode,       {.i = BSTACK}},
     {  MOD4|SHIFT,       XK_g,          switch_mode,       {.i = GRID}},
@@ -162,6 +164,8 @@ static key keys[] = {
 
     /* spawn terminal, dmenu, w/e you want to */
     {  MOD4|SHIFT,       XK_Return,     spawn,             {.com = termcmd}},
+    {  MOD4,             XK_f,          spawn,             {.com = browserCmd}},
+    {  MOD4,             XK_t,          spawn,             {.com = thunarCmd}},
     {  MOD4,             XK_r,          spawn,             {.com = menucmd}},
     /* uncomment to run autostart script */
     /* {  MOD1,             XK_r,          spawn,             SHCMD("$HOME/.frankenwm/autostart.sh")}, */
@@ -217,4 +221,3 @@ static Button buttons[] = {
     {  MOD4,    Button3,     mousemotion,   {.i = RESIZE}},
 };
 #endif
-
