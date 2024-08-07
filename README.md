@@ -29,7 +29,7 @@ The packages needed for example would be
 Configuration
 -------------
 
-Configuration is done by editing `config.h` before compiling FrankenWM.
+Configuration is done by editing `config.h` before compiling frincklenwm.
 
 Usage
 -----
@@ -38,7 +38,7 @@ I took the time to write a really nice and pretty manpage (man frincklenwm, or
 man ./[frincklenwm.1][man] if you want to read it before installing) covering the
 tiling modes and all of the default shortcuts.
 
-  [man]: https://github.com/su8/frincklenwm/blob/master/frincklenwm.1
+  [man]: https://github.com/su8/frincklewm/blob/master/frincklewm.1
 
 Bugs
 ----
